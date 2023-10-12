@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Update File</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update File</button>
+</form>
+<hr>
+<a href="{% url 'file_list' %}" class="btn btn-primary">File List</a>
+{% endblock %}

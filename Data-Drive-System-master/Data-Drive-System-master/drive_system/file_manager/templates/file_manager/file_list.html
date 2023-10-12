@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>File Manager</h1>
+<hr>
+
+<h2>Folders</h2>
+<ul>
+    {% for folder in folders %}
+        <li>
+            {{ folder.name }}
+            <a href="{% url 'update_folder' folder.id %}">Edit</a>
+            <a href="{% url 'delete_folder' folder.id %}">Delete</a>
+            <hr>
+            <ul>
+                {% for subfolder in folder.folder_set.all %}
+                    <li>
+                        {{ subfolder.name }}
+                        <a href="{% url 'update_folder' subfolder.id %}">Edit</a>
+                        <a href="{% url 'delete_folder' subfolder.id %}">Delete</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>
+
+<h2>Files</h2>
+<ul>
+    {% for file in files %}
+        <li>
+            {{ file.name }}
+            <a href="{% url 'update_file' file.id %}">Edit</a>
+            <a href="{% url 'delete_file' file.id %}">Delete</a>
+        </li>
+    {% endfor %}
+</ul>
+<hr>
+<a href="{% url 'create_folder' %}" class="btn btn-primary">Create Folder</a>
+<a href="{% url 'create_file' %}" class="btn btn-success">Create File</a>
+
+{% endblock %}

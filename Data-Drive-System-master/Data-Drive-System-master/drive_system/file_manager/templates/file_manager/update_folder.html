@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Update Folder Name</h2>
+<form method="post">
+    {% csrf_token %}
+    <label for="new_name">New Folder Name:</label>
+    <input type="text" id="new_name" name="new_name" value="{{ folder.name }}" required>
+    <button type="submit">Update Name</button>
+</form>
+<a href="{% url 'file_list' %}">Cancel</a>
+{% endblock %}
